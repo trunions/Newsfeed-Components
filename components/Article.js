@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "Trista's Article",
+    date: 'Aug 10, 2021',
+    firstParagraph: 'I really like learning how to code',
+    secondParagraph: 'It is really fun!',
+    thirdParagraph: 'Learning how to code will change my life for the better!'
   }
 ];
 
@@ -114,3 +121,47 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articles = document.querySelector('.articles')
+
+
+function articleMaker({title, date, firstParagraph,secondParagraph,thirdParagraph}){
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const articleFirstPara = document.createElement('p')
+  const articleSecondPara = document.createElement('p')
+  const articleThirdPara = document.createElement('p')
+  const button = document.createElement('span')
+
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(articleFirstPara)
+  article.appendChild(articleSecondPara)
+  article.appendChild(articleThirdPara)
+  article.appendChild(articleThirdPara)
+  article.appendChild(button)
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  button.classList.add('expandButton')
+
+  articleTitle.textContent = title
+  articleDate.textContent = date
+  articleFirstPara.textContent = firstParagraph
+  articleSecondPara.textContent = secondParagraph
+  articleThirdPara. textContent = thirdParagraph
+  button.textContent = '+'
+
+  button.addEventListener('click', e => {
+    article.classList.toggle('article-open')
+  })
+
+  return article
+}
+
+
+data.forEach(article => {
+  const newArticle = articleMaker(article)
+  articles.appendChild(newArticle)
+})
